@@ -1,0 +1,28 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+    Articles
+{% endblock title %}
+
+{% block content %}
+
+<h1>Все статьи</h1>
+
+{% if articles %}
+    <div style="text-align: center;">
+        <table cellpadding = '13' style="font-size: 20px;" >
+            {% for post in articles %}
+            <tr>
+            <tr>
+                <td>{{ post.title }}</td>
+                <td>{{ post.text|truncatechars:240 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+    <h2> Новостей нет </h2>
+{% endif %}
+
+{% endblock content %}
+
