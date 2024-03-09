@@ -15,6 +15,7 @@ class Article(models.Model):
         ('potion', 'Зельевар'),
         ('spellmaster', 'Мастер заклинаний'),
     )
+
     author = models.OneToOneField(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
     text = models.TextField()
