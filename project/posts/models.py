@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Article(models.Model):
@@ -21,3 +22,6 @@ class Article(models.Model):
     text = models.TextField()
     category = models.CharField(max_length=32, choices=CAT, default='dd')
     upload = models.FileField(upload_to='uploads/')
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.id)])

@@ -13,7 +13,6 @@
         <table cellpadding = '13' style="font-size: 20px;" >
             {% for post in articles %}
             <tr>
-            <tr>
                 <td>{{ post.title }}</td>
                 <td>{{ post.text|truncatechars:240 }}</td>
             </tr>
@@ -23,6 +22,24 @@
 {% else %}
     <h2> Новостей нет </h2>
 {% endif %}
+
+    {% if page_obj.has_previous %}
+       <a href="?page=1">1</a>
+       {% if page_obj.previous_page_number != 1 %}
+           ...
+           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+   {% endif %}
+
+   {{ page_obj.number }}
+
+   {% if page_obj.has_next %}
+       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           ...
+           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+       {% endif %}
+   {% endif %}
 
 {% endblock content %}
 
